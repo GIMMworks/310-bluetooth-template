@@ -8,6 +8,7 @@ class BluetoothCoreModel: NSObject, ObservableObject {
     // MARK: - Published Properties (updates UI automatically)
     @Published var peripherals: [CBPeripheral] = []
     @Published var isLoading: Bool = false
+    @Published var batteryLevel: Int? = nil
     
     // MARK: - Bluetooth
     private var centralManager: CBCentralManager!
@@ -79,15 +80,13 @@ extension BluetoothCoreModel: CBPeripheralDelegate {
         }
     }
     
-    func peripheral(_ peripheral: CBPeripheral,
-                    didUpdateValueFor characteristic: CBCharacteristic,
-                    error: Error?) {
-        
-        if characteristic.uuid == batteryLevelCharacteristicUUID,
-           let data = characteristic.value {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        if characteristic.uuid == batteryLevelCharacteristicUUID, let data = characteristic.value {
+            let level = Int(data[0]) // Convert byte to Int
             
-            let batteryLevel = data[0]
-            print("Battery Level: \(batteryLevel)%")
+            DispatchQueue.main.async {
+                self.batteryLevel = level
+            }
         }
     }
 }
