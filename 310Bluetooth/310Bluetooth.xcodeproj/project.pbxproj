@@ -258,6 +258,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-10Bluetooth-Info.plist";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to devices.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used for spatial orientation in precision finding.";
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app uses spatial awareness to find nearby devices with centimeter precision.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -292,6 +294,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-10Bluetooth-Info.plist";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to devices.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used for spatial orientation in precision finding.";
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app uses spatial awareness to find nearby devices with centimeter precision.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

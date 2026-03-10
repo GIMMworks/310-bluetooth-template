@@ -2,54 +2,60 @@ import SwiftUI
 import CoreBluetooth
 
 struct BluetoothCoreView: View {
-    @StateObject private var viewModel = BluetoothCoreModel()
-    
+    // This connects to the model shared by the MainTabView
+    @ObservedObject var viewModel: BluetoothCoreModel
+
     var body: some View {
-        NavigationStack {
-            List(viewModel.peripherals, id: \.identifier) { peripheral in
-                NavigationLink(destination: DeviceDetailView(viewModel: viewModel, peripheral: peripheral)) {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                // Header section
+                HStack {
+                    Image(systemName: "cpu")
+                        .font(.largeTitle)
+                        .foregroundColor(.blue)
                     VStack(alignment: .leading) {
-                        Text(peripheral.name ?? "Unknown Device")
-                            .font(.headline)
-                        Text(peripheral.identifier.uuidString.prefix(12))
-                            .font(.caption)
+                        Text("Live Device Data")
+                            .font(.title2)
+                            .bold()
+                        Text(viewModel.connectedPeripheral?.name ?? "Unknown Device")
+                            .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
                 }
-            }
-            .navigationTitle("Devices")
-        }
-    }
-}
+                .padding(.bottom)
 
-struct DeviceDetailView: View {
-    @ObservedObject var viewModel: BluetoothCoreModel
-    var peripheral: CBPeripheral
-    
-    var body: some View {
-        Form {
-            Section("Device Info") {
-                LabeledContent("Name", value: peripheral.name ?? "Unknown")
-                LabeledContent("Status", value: statusString)
+                Divider()
+
+                // Data Display Section
+                VStack(alignment: .leading, spacing: 15) {
+                    Text("Incoming GATT Values")
+                        .font(.headline)
+                        .foregroundColor(.blue)
+
+                    // This fixes your "dynamicMember" error by reading
+                    // the property directly without a $ sign.
+                    Text(viewModel.discoveredData)
+                        .font(.system(.body, design: .monospaced))
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
+                }
+
+                Spacer()
+                
+                // Status Footer
+                HStack {
+                    Circle()
+                        .fill(viewModel.connectedPeripheral != nil ? Color.green : Color.red)
+                        .frame(width: 10, height: 10)
+                    Text(viewModel.connectedPeripheral != nil ? "Connected" : "Disconnected")
+                        .font(.caption)
+                        .textCase(.uppercase)
+                }
             }
-            
-            Section("Live Data Feed") {
-                Text("\(viewModel.discoveredData)")
-                    .font(.system(.body, design: .monospaced))
-                    .foregroundColor(.blue)
-            }
+            .padding()
         }
-        .navigationTitle("Details")
-        .onAppear {
-            viewModel.connect(to: peripheral)
-        }
-    }
-    
-    var statusString: String {
-        switch peripheral.state {
-        case .connected: return "Connected"
-        case .connecting: return "Connecting..."
-        default: return "Disconnected"
-        }
+        .navigationTitle("Data Stream")
     }
 }
