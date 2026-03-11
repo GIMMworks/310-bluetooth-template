@@ -2,7 +2,7 @@ import SwiftUI
 import NearbyInteraction
 
 struct SpatialDistanceView: View {
-    // This connects to the hardware manager we just finished
+    // This connects to the hardware manager
     @ObservedObject var niManager: NearbyInteractionManager
     
     var body: some View {
@@ -27,17 +27,15 @@ struct SpatialDistanceView: View {
 
             Spacer()
 
-            // 2. The Directional Arrow
-            // We use the 'x' component of the direction vector to determine left/right
+           
             if let direction = niManager.direction {
                 Image(systemName: "arrow.up")
                     .font(.system(size: 120, weight: .black))
                     .foregroundColor(.blue)
-                    .rotationEffect(.radians(Double(direction.x))) // Rotates based on peer location
+                    .rotationEffect(.radians(Double(direction.x)))
                     .shadow(color: .blue.opacity(0.3), radius: 10)
                     .transition(.scale.combined(with: .opacity))
             } else {
-                // Pulse effect while searching
                 Image(systemName: "dot.radiowaves.left.and.right")
                     .font(.system(size: 80))
                     .foregroundColor(.gray.opacity(0.5))
@@ -46,7 +44,6 @@ struct SpatialDistanceView: View {
             // 3. The Distance Display
             VStack(spacing: 5) {
                 if let dist = niManager.distance {
-                    // Convert meters to feet if you prefer, or keep as meters
                     Text(String(format: "%.1f", dist))
                         .font(.system(size: 90, weight: .bold, design: .rounded))
                         .foregroundColor(dist < 1.0 ? .green : .primary)
@@ -66,7 +63,7 @@ struct SpatialDistanceView: View {
 
             Spacer()
             
-            // 4. Instructional Footer
+            // 4. Instructions
             Text("Point your phone toward the other device\nand move slightly to calibrate.")
                 .font(.caption)
                 .multilineTextAlignment(.center)

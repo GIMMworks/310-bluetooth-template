@@ -71,7 +71,6 @@ struct DeviceRowView: View {
                     .font(.headline)
                 
                 if model.connectedPeripheral == peripheral {
-                    // This shows "Connected", "Connecting...", or the data values
                     Text(model.discoveredData.isEmpty ? "Connected" : model.discoveredData)
                         .font(.subheadline)
                         .foregroundColor(.green)

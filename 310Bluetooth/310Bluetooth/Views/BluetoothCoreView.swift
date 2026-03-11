@@ -8,7 +8,6 @@ struct BluetoothCoreView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // Header section
                 HStack {
                     Image(systemName: "cpu")
                         .font(.largeTitle)
@@ -32,8 +31,7 @@ struct BluetoothCoreView: View {
                         .font(.headline)
                         .foregroundColor(.blue)
 
-                    // This fixes your "dynamicMember" error by reading
-                    // the property directly without a $ sign.
+                  
                     Text(viewModel.discoveredData)
                         .font(.system(.body, design: .monospaced))
                         .padding()
@@ -44,7 +42,6 @@ struct BluetoothCoreView: View {
 
                 Spacer()
                 
-                // Status Footer
                 HStack {
                     Circle()
                         .fill(viewModel.connectedPeripheral != nil ? Color.green : Color.red)
