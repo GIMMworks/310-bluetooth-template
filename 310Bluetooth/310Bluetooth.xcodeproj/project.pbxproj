@@ -253,18 +253,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9PLZ3NRC38;
+				DEVELOPMENT_TEAM = 3UM5K39AQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-10Bluetooth-Info.plist";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to devices.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to devices and broadcast as an iBeacon.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for spatial orientation in precision finding.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Required to broadcast and detect iBeacons";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Required to detect and range iBeacons nearby.";
 				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app uses spatial awareness to find nearby devices with centimeter precision.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,18 +292,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9PLZ3NRC38;
+				DEVELOPMENT_TEAM = 3UM5K39AQ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-10Bluetooth-Info.plist";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to devices.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to devices and broadcast as an iBeacon.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for spatial orientation in precision finding.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Required to broadcast and detect iBeacons";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Required to detect and range iBeacons nearby.";
 				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app uses spatial awareness to find nearby devices with centimeter precision.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

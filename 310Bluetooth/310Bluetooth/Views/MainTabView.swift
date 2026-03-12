@@ -4,13 +4,13 @@ import CoreBluetooth
 struct MainTabView: View {
     @StateObject private var bluetoothModel = BluetoothCoreModel()
     @State private var selectedTab = 0
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
                 VStack(spacing: 0) {
                     BroadcastingHeaderView(model: bluetoothModel)
-                    
+
                     List(bluetoothModel.peripherals, id: \.identifier) { peripheral in
                         DeviceRowView(
                             peripheral: peripheral,
@@ -32,15 +32,19 @@ struct MainTabView: View {
             }
             .tabItem { Label("Scanner", systemImage: "list.bullet.indent") }
             .tag(0)
-            
+
             SpatialDistanceView(niManager: bluetoothModel.niManager)
                 .tabItem { Label("Precision", systemImage: "scope") }
                 .tag(1)
+
+            IBeaconView()
+                .tabItem { Label("iBeacon", systemImage: "dot.radiowaves.left.and.right") }
+                .tag(2)
         }
     }
 }
 
-// MARK: - Sub-Views
+// MARK: - Sub-Views (unchanged)
 
 struct BroadcastingHeaderView: View {
     @ObservedObject var model: BluetoothCoreModel
@@ -63,13 +67,13 @@ struct DeviceRowView: View {
     let peripheral: CBPeripheral
     @ObservedObject var model: BluetoothCoreModel
     @Binding var selectedTab: Int
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(peripheral.name ?? "Unknown Device")
                     .font(.headline)
-                
+
                 if model.connectedPeripheral == peripheral {
                     Text(model.discoveredData.isEmpty ? "Connected" : model.discoveredData)
                         .font(.subheadline)
@@ -81,9 +85,9 @@ struct DeviceRowView: View {
                         .foregroundColor(.gray)
                 }
             }
-            
+
             Spacer()
-            
+
             if model.connectedPeripheral == peripheral {
                 Button(action: {
                     model.sendHandshake()
