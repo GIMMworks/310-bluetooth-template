@@ -1,7 +1,6 @@
 import SwiftUI
 import CoreLocation
 
-// MARK: - IBeaconView
 /// Top-level view for the iBeacon demo tab.
 /// Purely reactive — all logic lives in IBeaconModel.
 struct IBeaconView: View {
@@ -40,7 +39,6 @@ struct IBeaconView: View {
     }
 }
 
-// MARK: - Role Selector
 /// Segmented control to pick Beacon (transmit) or Scanner (receive) role.
 struct RoleSelectorView: View {
     @ObservedObject var viewModel: IBeaconModel
@@ -72,7 +70,6 @@ struct RoleSelectorView: View {
     }
 }
 
-// MARK: - Status Card
 /// Displays the current status string from the ViewModel.
 struct StatusCardView: View {
     @ObservedObject var viewModel: IBeaconModel
@@ -99,7 +96,6 @@ struct StatusCardView: View {
     }
 }
 
-// MARK: - Proximity Indicator (Scanner only)
 /// Animated concentric rings that grow/shrink based on detected proximity.
 struct ProximityIndicatorView: View {
     @ObservedObject var viewModel: IBeaconModel
@@ -161,7 +157,6 @@ struct ProximityIndicatorView: View {
     }
 }
 
-// MARK: - Beacon Metrics (Scanner only)
 /// Shows numeric accuracy and RSSI values from ranged beacon.
 struct BeaconMetricsView: View {
     @ObservedObject var viewModel: IBeaconModel
@@ -202,7 +197,6 @@ struct BeaconMetricsView: View {
     }
 }
 
-// MARK: - Metric Tile
 struct MetricTileView: View {
     let icon: String
     let label: String
@@ -227,7 +221,6 @@ struct MetricTileView: View {
     }
 }
 
-// MARK: - Beacon Broadcast Info (Beacon only)
 /// Shown when this device is acting as the beacon — displays what it's broadcasting.
 struct BeaconBroadcastView: View {
     @ObservedObject var viewModel: IBeaconModel
@@ -275,7 +268,6 @@ struct BeaconInfoRowView: View {
     }
 }
 
-// MARK: - Control Button
 /// Start / Stop button that adapts label and color to current state.
 struct ControlButtonView: View {
     @ObservedObject var viewModel: IBeaconModel
@@ -298,7 +290,6 @@ struct ControlButtonView: View {
     }
 }
 
-// MARK: - Preview
 #Preview {
     IBeaconView()
 }
