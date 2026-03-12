@@ -3,18 +3,15 @@ import CoreLocation
 import CoreBluetooth
 import Combine
 
-// MARK: - Role Enum
 enum IBeaconRole {
     case beacon
     case scanner
 }
 
-// MARK: - IBeaconModel
 /// Manages all CoreLocation iBeacon logic for both advertising (beacon) and ranging (scanner) roles.
 /// Conforms to ObservableObject so SwiftUI views reactively update on state changes.
 class IBeaconModel: NSObject, ObservableObject {
 
-    // MARK: - Published State (View reacts to these)
     @Published var role: IBeaconRole = .scanner
     @Published var isActive: Bool = false
     @Published var statusMessage: String = "Select a role to begin."
@@ -23,14 +20,13 @@ class IBeaconModel: NSObject, ObservableObject {
     @Published var rssi: Int = 0
     @Published var permissionDenied: Bool = false
 
-    // MARK: - iBeacon Identity
     /// Shared UUID that both phones must use — in production, generate your own with `uuidgen`
     static let beaconUUID = UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!
     static let beaconMajor: CLBeaconMajorValue = 1
     static let beaconMinor: CLBeaconMinorValue = 1
     static let beaconIdentifier = "com.GIMMWorks.-10Bluetooth"
 
-    // MARK: - Private CoreLocation + CoreBluetooth
+    // Private CoreLocation + CoreBluetooth
     private let locationManager = CLLocationManager()
     private var peripheralManager: CBPeripheralManager?
     private var beaconRegion: CLBeaconRegion {
@@ -45,14 +41,11 @@ class IBeaconModel: NSObject, ObservableObject {
         CLBeaconIdentityConstraint(uuid: IBeaconModel.beaconUUID)
     }
 
-    // MARK: - Init
     override init() {
         super.init()
         locationManager.delegate = self
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     }
-
-    // MARK: - Public API
 
     /// Switch role and reset state
     func setRole(_ newRole: IBeaconRole) {
@@ -95,8 +88,6 @@ class IBeaconModel: NSObject, ObservableObject {
             statusMessage = "Scanner stopped."
         }
     }
-
-    // MARK: - Private Helpers
 
     private func performStart() {
         isActive = true
@@ -156,7 +147,6 @@ class IBeaconModel: NSObject, ObservableObject {
     }
 }
 
-// MARK: - CBPeripheralManagerDelegate
 extension IBeaconModel: CBPeripheralManagerDelegate {
 
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
